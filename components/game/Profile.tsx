@@ -205,17 +205,16 @@ export function Profile() {
 
   const handleConnectBaseWallet = async () => {
     setWalletError(null);
-    // Prioritize Coinbase Wallet, but fallback to Injected if in a dApp browser
+    // STRICT: Base Wallet only uses Coinbase Wallet connector
     const coinbase = connectors.find(c => c.id.toLowerCase().includes('coinbase') || c.name.toLowerCase().includes('coinbase'));
-    const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
     
     if (coinbase) {
-        await connectAsync({ connector: coinbase }).catch(() => {
-            // If Coinbase fails, try injected (often handles the same in some envs)
-            if (injected) connectAsync({ connector: injected });
+        await connectAsync({ connector: coinbase }).catch((e) => {
+             console.error("Coinbase connection failed", e);
+             setWalletError("Base Wallet connection failed");
         });
-    } else if (injected) {
-        await connectAsync({ connector: injected });
+    } else {
+        setWalletError("Base Wallet not available");
     }
     
     if (!walletError) {
@@ -223,9 +222,9 @@ export function Profile() {
     }
   };
 
-  // Auto-connect for Farcaster users
+  // Auto-connect ONLY if authenticated as Farcaster user (in Frame)
   useEffect(() => {
-    if (farcasterUser && !isConnected && !address) {
+    if (identity.isAuthenticated && farcasterUser && !isConnected && !address) {
       const autoConnect = async () => {
         const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
         if (injected) {
@@ -238,26 +237,30 @@ export function Profile() {
       };
       autoConnect();
     }
-  }, [farcasterUser, isConnected, address, connectors, connectAsync]);
+  }, [identity.isAuthenticated, farcasterUser, isConnected, address, connectors, connectAsync]);
 
   const handleSyncWarpcast = async () => {
     setWalletError(null);
-    setIsPayingSignIn(true); // Reuse loading state for visual feedback
+    setIsPayingSignIn(true); 
     try {
-      // 1. Try to connect to injected provider (standard for Frames/MiniApps)
-      const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
-      if (injected) {
-        await connectAsync({ connector: injected });
-        // Force refresh of profile data
-        window.location.reload(); 
+      // STRICT: Only attempt wallet connection if we are in a Frame context (authenticated)
+      if (identity.isAuthenticated) {
+          const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
+          if (injected) {
+            await connectAsync({ connector: injected });
+            window.location.reload(); 
+          } else {
+            // In frame but no injected provider? Weird, but just reload.
+            window.location.reload();
+          }
       } else {
-        setWalletError("No wallet provider found. Reloading...");
-        setTimeout(() => window.location.reload(), 1000);
+          // Not in Frame (e.g. desktop browser) -> Just reload identity, do NOT pop wallet
+          window.location.reload();
       }
     } catch (e) {
       console.error("Sync failed:", e);
-      setWalletError("Sync failed. Reloading...");
-      setTimeout(() => window.location.reload(), 1000);
+      // Fallback: just reload
+      window.location.reload();
     } finally {
         setIsPayingSignIn(false);
     }
