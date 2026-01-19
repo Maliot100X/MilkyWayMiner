@@ -222,48 +222,9 @@ export function Profile() {
     }
   };
 
-  // Auto-connect ONLY if authenticated as Farcaster user (in Frame)
-  useEffect(() => {
-    if (identity.isAuthenticated && farcasterUser && !isConnected && !address) {
-      const autoConnect = async () => {
-        const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
-        if (injected) {
-            try {
-                await connectAsync({ connector: injected });
-            } catch (e) {
-                console.warn("Auto-connect failed:", e);
-            }
-        }
-      };
-      autoConnect();
-    }
-  }, [identity.isAuthenticated, farcasterUser, isConnected, address, connectors, connectAsync]);
-
   const handleSyncWarpcast = async () => {
-    setWalletError(null);
-    setIsPayingSignIn(true); 
-    try {
-      // STRICT: Only attempt wallet connection if we are in a Frame context (authenticated)
-      if (identity.isAuthenticated) {
-          const injected = connectors.find(c => c.id.toLowerCase().includes('injected'));
-          if (injected) {
-            await connectAsync({ connector: injected });
-            window.location.reload(); 
-          } else {
-            // In frame but no injected provider? Weird, but just reload.
-            window.location.reload();
-          }
-      } else {
-          // Not in Frame (e.g. desktop browser) -> Just reload identity, do NOT pop wallet
-          window.location.reload();
-      }
-    } catch (e) {
-      console.error("Sync failed:", e);
-      // Fallback: just reload
-      window.location.reload();
-    } finally {
-        setIsPayingSignIn(false);
-    }
+    // Just reload to sync Farcaster context/UI
+    window.location.reload();
   };
 
   const handleConnectMetaMask = async () => {
