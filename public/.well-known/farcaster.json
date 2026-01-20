@@ -1,0 +1,13 @@
+{
+  "name": "VoidDrillersX",
+  "description": "Free earning mini app. Drill, blast off, and hunt USDC rewards.",
+  "icon": "https://void-drillers-x.vercel.app/assets/share-preview.jpg",
+  "homeUrl": "https://void-drillers-x.vercel.app",
+  "imageUrl": "https://void-drillers-x.vercel.app/assets/share-preview.jpg",
+  "buttonTitle": "Launch VoidDrillersX",
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  }
+}
