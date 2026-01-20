@@ -16,22 +16,22 @@ const chakraPetch = Chakra_Petch({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://void-drillers-x.vercel.app'),
-  title: "Milky Way Miner",
-  description: "A Farcaster Frame Game",
+  title: "VoidDrillersX",
+  description: "Free earning mini app. Drill, blast off, and hunt USDC rewards.",
   icons: {
-    icon: 'https://void-drillers-x.vercel.app/assets/icon.jpg',
+    icon: 'https://void-drillers-x.vercel.app/icon.png',
   },
   openGraph: {
-    title: "Milky Way Miner",
-    description: "Mine resources, earn $VDR, and compete on the leaderboard!",
+    title: "VoidDrillersX",
+    description: "Free earning mini app. Drill, blast off, and hunt USDC rewards.",
     url: 'https://void-drillers-x.vercel.app',
-    siteName: 'Milky Way Miner',
+    siteName: 'VoidDrillersX',
     images: [
       {
-        url: 'https://void-drillers-x.vercel.app/assets/og-image.jpg',
-        width: 400,
-        height: 400,
-        alt: 'Milky Way Miner Preview',
+        url: 'https://void-drillers-x.vercel.app/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'VoidDrillersX OG Image',
       },
     ],
     locale: 'en_US',
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: "Milky Way Miner",
-    description: "Mine resources, earn $VDR, and compete on the leaderboard!",
-    images: ['https://void-drillers-x.vercel.app/assets/og-image.jpg'],
+    title: "VoidDrillersX",
+    description: "Free earning mini app. Drill, blast off, and hunt USDC rewards.",
+    images: ['https://void-drillers-x.vercel.app/og.png'],
   },
   other: {
     'base:app_id': '696eec56f22fe462e74c1616',
