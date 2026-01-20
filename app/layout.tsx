@@ -19,19 +19,29 @@ export const metadata: Metadata = {
   title: "Milky Way Miner",
   description: "A Farcaster Frame Game",
   icons: {
-    icon: '/assets/favicon.svg',
+    icon: '/assets/share-preview.jpg',
   },
   openGraph: {
     title: "Milky Way Miner",
     description: "Mine resources, earn $VDR, and compete on the leaderboard!",
+    url: 'https://void-drillers-x.vercel.app',
+    siteName: 'Milky Way Miner',
     images: [
       {
-        url: '/assets/share-preview.svg',
-        width: 1200,
-        height: 630,
+        url: '/assets/share-preview.jpg',
+        width: 400,
+        height: 400,
         alt: 'Milky Way Miner Preview',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: "Milky Way Miner",
+    description: "Mine resources, earn $VDR, and compete on the leaderboard!",
+    images: ['/assets/share-preview.jpg'],
   },
 };
 

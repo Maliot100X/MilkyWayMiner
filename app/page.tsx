@@ -123,7 +123,7 @@ export default function Home() {
     }, 400);
   };
 
-  const worldBackground = `url('/assets/game-open-banner.svg')`;
+  const worldBackground = `url('/assets/game-open-banner.jpg')`;
 
   return (
     <main className="flex min-h-screen w-full items-center justify-center bg-black overflow-hidden relative font-sans text-white">
