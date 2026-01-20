@@ -6,8 +6,8 @@
   "imageUrl": "https://void-drillers-x.vercel.app/assets/share-preview.jpg",
   "buttonTitle": "Launch VoidDrillersX",
   "accountAssociation": {
-    "header": "",
-    "payload": "",
-    "signature": ""
+    "header": "eyJmaWQiOjE0MjgzODQsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhmNWJDOTczOThiM0E2MzI5YkUzMzlBZjA4Y2JCY2EyN2VhRUVkQjNCIn0",
+    "payload": "eyJkb21haW4iOiJ2b2lkLWRyaWxsZXJzLXgudmVyY2VsLmFwcCJ9",
+    "signature": "/R0iUCjqSxh7bIqMrEmKnwcUt7dy9nH3+89zm3P+FgZTJJAc83wC7WeHnwQSzvscf4+dDPtD6CTyA48ggF7oyRs="
   }
 }
