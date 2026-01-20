@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Milky Way Miner",
   description: "A Farcaster Frame Game",
   icons: {
-    icon: '/assets/icon.jpg',
+    icon: 'https://void-drillers-x.vercel.app/assets/icon.jpg',
   },
   openGraph: {
     title: "Milky Way Miner",
